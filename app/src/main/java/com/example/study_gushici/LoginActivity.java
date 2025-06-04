@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +17,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // 获取 TextView 组件
+        TextView tvRegister = findViewById(R.id.tvRegister);
+
+        // 设置点击事件监听器
+        tvRegister.setOnClickListener(v -> {
+            // 创建跳转到注册页面的 Intent
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent); // 启动注册页面
+        });
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);

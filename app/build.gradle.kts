@@ -32,6 +32,11 @@ android {
 }
 
 dependencies {
+    implementation("androidx.room:room-runtime:2.5.2")
+    annotationProcessor("androidx.room:room-compiler:2.5.2")
+
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation ("org.jsoup:jsoup:1.17.2")
 
     val nav_version = "2.8.0"
     implementation("androidx.navigation:navigation-fragment:$nav_version")

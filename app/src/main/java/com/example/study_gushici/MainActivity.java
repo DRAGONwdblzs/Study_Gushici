@@ -2,17 +2,13 @@ package com.example.study_gushici;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import android.os.Bundle;
+
 import android.view.MenuItem;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +19,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 检查是否是首次启动，如果是则初始化诗词数据
+        boolean isFirstLaunch = getSharedPreferences("app_prefs", MODE_PRIVATE)
+                .getBoolean("is_first_launch", true);
+        if (isFirstLaunch) {
+            // 初始化诗词数据
+            new Thread(() -> {
+                PoetryDataInitializer.initializePoetryData(this);
+                // 标记为非首次启动
+                getSharedPreferences("app_prefs", MODE_PRIVATE).edit()
+                        .putBoolean("is_first_launch", false).apply();
+            }).start();
+        }
+
         bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -31,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, new PoetryFragment())
                 .commit();
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                public boolean onNavigationItemSelected(MenuItem item) {
                     Fragment selectedFragment = null;
 
                     if (item.getItemId() == R.id.nav_user) {

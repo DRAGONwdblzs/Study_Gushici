@@ -1,5 +1,8 @@
 package com.example.study_gushici;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +33,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // 预先加载所有诗词
-        allPoems = loadAllPoems();
+        allPoems = loadAllPoems(getContext());
 
         btnSearch.setOnClickListener(v -> performSearch());
 
@@ -61,14 +64,38 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private List<Poetry> loadAllPoems() {
-        // 实际项目中应从资源或数据库加载
+    private List<Poetry> loadAllPoems(Context context) {
         List<Poetry> poems = new ArrayList<>();
-        poems.add(new Poetry("静夜思", "李白", "床前明月光，疑是地上霜。举头望明月，低头思故乡。", "唐"));
-        poems.add(new Poetry("春晓", "孟浩然", "春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。", "唐"));
-        poems.add(new Poetry("登鹳雀楼", "王之涣", "白日依山尽，黄河入海流。欲穷千里目，更上一层楼。", "唐"));
-        poems.add(new Poetry("江雪", "柳宗元", "千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。", "唐"));
-        poems.add(new Poetry("赋得古原草送别", "白居易", "离离原上草，一岁一枯荣。野火烧不尽，春风吹又生。远芳侵古道，晴翠接荒城。又送王孙去，萋萋满别情。", "唐"));
+        PoetryDatabaseHelper dbHelper = new PoetryDatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String[] projection = {
+                PoetryDatabaseHelper.COLUMN_TITLE,
+                PoetryDatabaseHelper.COLUMN_AUTHOR,
+                PoetryDatabaseHelper.COLUMN_DYNASTY,
+                PoetryDatabaseHelper.COLUMN_CONTENT
+        };
+
+        Cursor cursor = db.query(
+                PoetryDatabaseHelper.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        while (cursor.moveToNext()) {
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(PoetryDatabaseHelper.COLUMN_TITLE));
+            String author = cursor.getString(cursor.getColumnIndexOrThrow(PoetryDatabaseHelper.COLUMN_AUTHOR));
+            String dynasty = cursor.getString(cursor.getColumnIndexOrThrow(PoetryDatabaseHelper.COLUMN_DYNASTY));
+            String content = cursor.getString(cursor.getColumnIndexOrThrow(PoetryDatabaseHelper.COLUMN_CONTENT));
+            poems.add(new Poetry(title, author, content, dynasty));
+        }
+
+        cursor.close();
+        db.close();
         return poems;
     }
 }
