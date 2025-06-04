@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">诗词App</string>
+    <string name="welcome">欢迎使用诗词App</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="no_account">没有账号？立即注册</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_failed">登录失败</string>
+    <string name="register_success">注册成功</string>
+    <string name="username_or_password_empty">用户名或密码不能为空</string>
+    <string name="password_not_match">两次密码不一致</string>
+    <string name="username_exists">用户名已存在</string>
+    <string name="search_hint">搜索诗词、作者</string>
+    <string name="search">搜索</string>
+    <string name="logout">退出登录</string>
+    <string name="user">我的</string>
+    <string name="poetry">诗词</string>
+    <string name="search_title">搜索</string>
+    <string name="no_result">没有找到相关诗词</string>
+</resources>

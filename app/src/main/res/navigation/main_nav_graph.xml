@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/nav_poetry">
+
+    <fragment
+        android:id="@+id/nav_user"
+        android:name="com.example.study_gushici.UserFragment"
+        android:label="@string/user" />
+
+    <fragment
+        android:id="@+id/nav_poetry"
+        android:name="com.example.study_gushici.PoetryFragment"
+        android:label="@string/poetry" />
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.example.study_gushici.SearchFragment"
+        android:label="@string/search_title" />
+</navigation>
