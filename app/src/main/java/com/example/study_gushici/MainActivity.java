@@ -3,7 +3,6 @@ package com.example.study_gushici;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -39,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new PoetryFragment())
                 .commit();
+
+        // 设置底部导航栏的“诗词”项为选中状态
+        bottomNav.setSelectedItemId(R.id.nav_poetry);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

@@ -1,6 +1,7 @@
 package com.example.study_gushici;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,6 +31,13 @@ public class PoetryFragment extends Fragment {
 
         adapter = new PoetryAdapter(poetryList);
         recyclerView.setAdapter(adapter);
+
+        // 设置诗词项的点击监听器
+        adapter.setOnPoetryClickListener(poetry -> {
+            Intent intent = new Intent(getActivity(), PoetryDetailActivity.class);
+            intent.putExtra("poetry", poetry);
+            startActivity(intent);
+        });
 
         return view;
     }

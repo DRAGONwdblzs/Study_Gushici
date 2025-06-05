@@ -31,6 +31,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <!-- 添加PoetryDetailActivity的声明 -->
+        <activity
+            android:name=".PoetryDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

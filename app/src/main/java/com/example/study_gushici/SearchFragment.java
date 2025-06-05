@@ -59,6 +59,7 @@ public class SearchFragment extends Fragment {
             // 显示无结果提示
             // 这里可以添加一个空状态视图
         } else {
+            // 只传入 List<Poetry> 参数
             adapter = new PoetryAdapter(results);
             recyclerView.setAdapter(adapter);
         }
