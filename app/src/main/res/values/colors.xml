@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBackground">#F5F5F5</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
-    <color name="colorBackground">#F5F5F5</color>
-    <color name="bottom_nav_selected">#3F51B5</color>
-    <color name="bottom_nav_unselected">#757575</color>
+    <color name="welcome_background">#2196F3</color>
+    <color name="background_color">#FFF8E1</color> <!-- 柔和的米色 -->
+    <color name="primary">#5D4037</color> <!-- 深棕色主题 -->
+    <color name="primary_dark">#3E2723</color>
 </resources>

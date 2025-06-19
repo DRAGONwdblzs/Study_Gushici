@@ -25,6 +25,12 @@
         android:elevation="2dp"
         android:inputType="textPersonName"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorTextSecondary"
+        android:layout_marginBottom="16dp"/>
+
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"

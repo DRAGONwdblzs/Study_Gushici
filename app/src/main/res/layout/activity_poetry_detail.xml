@@ -1,31 +1,47 @@
-<!-- activity_poetry_detail.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true"
+    android:background="@drawable/bg_mountains">
 
-    <TextView
-        android:id="@+id/tv_detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_marginBottom="4dp"/>
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_detail_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/colorTextSecondary"
-        android:layout_marginBottom="8dp"/>
+<!-- 原有 Toolbar、TextView 等内容保持不变 -->
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/background_color"
+    app:titleTextColor="@color/colorTextPrimary" />
 
-    <TextView
-        android:id="@+id/tv_detail_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/colorTextPrimary"/>
+<TextView
+    android:id="@+id/tv_detail_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:paddingBottom="8dp" />
+
+<TextView
+    android:id="@+id/tv_detail_author"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:gravity="center"
+    android:paddingBottom="16dp" />
+
+<TextView
+    android:id="@+id/tv_detail_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:lineSpacingMultiplier="1.2"
+    android:textAlignment="center" />
 </LinearLayout>
+    </ScrollView>

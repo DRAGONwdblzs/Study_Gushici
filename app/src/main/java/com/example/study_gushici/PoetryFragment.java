@@ -1,5 +1,8 @@
+// PoetryFragment.java
 package com.example.study_gushici;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +43,35 @@ public class PoetryFragment extends Fragment {
             startActivity(intent);
         });
 
+        // 添加淡入动画
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+
+                for (int i = firstVisibleItemPosition; i <= lastVisibleItemPosition; i++) {
+                    View itemView = layoutManager.findViewByPosition(i);
+                    if (itemView != null && itemView.getAlpha() == 0) {
+                        animateItem(itemView);
+                    }
+                }
+            }
+        });
+
         return view;
+    }
+
+    private void animateItem(View view) {
+        ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f);
+        alphaAnimator.setDuration(500);
+        alphaAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(alphaAnimator);
+        animatorSet.start();
     }
 
     private List<Poetry> loadPoemsFromDatabase(Context context) {

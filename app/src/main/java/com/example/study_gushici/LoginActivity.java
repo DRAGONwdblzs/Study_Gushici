@@ -39,16 +39,18 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        // 验证本地存储的用户信息
         String savedPassword = sharedPreferences.getString(username, "");
         if (!TextUtils.isEmpty(savedPassword) && savedPassword.equals(password)) {
-            // 保存当前登录用户
+            // 保存当前用户（原逻辑保留）
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("current_user", username);
             editor.apply();
 
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            // 新增：登录成功后，先跳转到欢迎界面
+            Intent welcomeIntent = new Intent(this, WelcomeActivity.class);
+            welcomeIntent.putExtra("username", username); // 传递用户名
+            startActivity(welcomeIntent);
+            finish(); // 关闭登录页
         } else {
             Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
         }

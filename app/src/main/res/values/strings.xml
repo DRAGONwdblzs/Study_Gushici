@@ -21,4 +21,5 @@
     <string name="poetry">诗词</string>
     <string name="search_title">搜索</string>
     <string name="no_result">没有找到相关诗词</string>
+    <string name="welcome_back">欢迎回来</string>
 </resources>
